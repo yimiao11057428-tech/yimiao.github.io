@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>易妙的个人网页</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>易妙 | 工业设计研究生个人主页</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,530 +11,918 @@
       padding: 0;
     }
 
-body {
-  font-family: "Microsoft YaHei", Arial, sans-serif;
-  background: #f7f7f4;
-  color: #111;
-  line-height: 1.6;
-  padding: 0;
-}
+    :root {
+      --bg: #b8b8b8;
+      --paper: #f5f5f2;
+      --soft: #ecece7;
+      --black: #111;
+      --green: #b7ff2a;
+      --text: #222;
+      --muted: #666;
+    }
 
-.page {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  background: #f7f7f4;
-  border-radius: 0;
-  padding: 40px 8%;
-  box-shadow: none;
-}
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 36px 18px;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 2px solid rgba(0,0,0,0.12);
+      border-radius: 50%;
+      right: -80px;
+      top: 120px;
+      transform: rotate(20deg);
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 60px;
+      border: 2px solid rgba(0,0,0,0.12);
+      border-radius: 50%;
+      left: -30px;
+      bottom: 180px;
+      transform: rotate(-15deg);
+    }
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 56px;
-      font-size: 14px;
+      gap: 20px;
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
-      font-weight: 800;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
       font-size: 18px;
+      font-weight: 700;
+      margin-left: 8px;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
       align-items: center;
     }
 
     .nav-links a {
-      color: #111;
       text-decoration: none;
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .btn-outline {
-      border: 1.5px solid #111;
-      border-radius: 10px;
-      padding: 8px 16px;
-      text-decoration: none;
-      color: #111;
-      font-weight: 600;
+      padding: 9px 16px;
+      border: 1.8px solid var(--black);
+      border-radius: 12px;
+      background: transparent;
     }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  min-height: 70vh;
-  margin-bottom: 80px;
-}
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 2;
+    }
 
-.hero h1 {
-  font-size: 72px;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 28px;
-}
+    .hero-left h1 {
+      font-size: 68px;
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+      color: var(--black);
+    }
 
-    .hero p {
-      max-width: 420px;
+    .hero-left p {
+      max-width: 560px;
       color: #333;
-      margin-bottom: 24px;
+      font-size: 18px;
+      margin-bottom: 22px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .btn-dark {
-      display: inline-block;
-      background: #111;
+      background: var(--black);
       color: #fff;
-      padding: 12px 22px;
-      border-radius: 10px;
       text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn-light {
+      background: var(--green);
+      color: var(--black);
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      background: #fff;
+      border: 1.5px solid var(--black);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
       font-weight: 700;
     }
 
     .hero-art {
+      min-height: 360px;
       position: relative;
-      min-height: 260px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .circle {
-      width: 220px;
-      height: 220px;
-      border: 2px solid #111;
-      border-radius: 50%;
-      transform: rotate(-18deg);
+    .orbit {
       position: absolute;
+      border: 2px solid rgba(0,0,0,0.5);
+      border-radius: 50%;
     }
 
-    .circle.two {
-      width: 270px;
-      height: 120px;
-      border-radius: 50%;
+    .orbit.one {
+      width: 280px;
+      height: 180px;
       transform: rotate(18deg);
     }
 
-    .megaphone {
-      position: relative;
-      width: 150px;
-      height: 80px;
-      background: #111;
-      border-radius: 14px;
+    .orbit.two {
+      width: 210px;
+      height: 290px;
+      transform: rotate(-20deg);
+    }
+
+    .orbit.three {
+      width: 120px;
+      height: 120px;
+      transform: rotate(30deg);
+    }
+
+    .shape-main {
+      width: 180px;
+      height: 110px;
+      background: var(--black);
+      border-radius: 24px;
       transform: rotate(-18deg);
+      position: relative;
       z-index: 2;
     }
 
-    .megaphone::before {
+    .shape-main::before {
       content: "";
       position: absolute;
-      right: -44px;
-      top: -18px;
-      border-left: 70px solid #111;
-      border-top: 58px solid transparent;
-      border-bottom: 58px solid transparent;
-    }
-
-    .megaphone::after {
-      content: "";
-      position: absolute;
-      left: 22px;
+      right: -52px;
       top: 18px;
-      width: 42px;
-      height: 42px;
-      background: #b8ff2c;
-      border-radius: 50%;
+      border-left: 74px solid var(--black);
+      border-top: 38px solid transparent;
+      border-bottom: 38px solid transparent;
     }
 
-    .bubble {
+    .shape-main::after {
+      content: "";
       position: absolute;
-      background: #b8ff2c;
+      width: 48px;
+      height: 48px;
+      background: var(--green);
       border-radius: 50%;
-      border: 2px solid #111;
+      left: 30px;
+      top: 30px;
     }
 
-    .b1 {
-      width: 44px;
-      height: 44px;
-      right: 54px;
-      top: 24px;
+    .dot, .star {
+      position: absolute;
+      z-index: 2;
     }
 
-    .b2 {
-      width: 32px;
-      height: 32px;
-      right: 24px;
-      top: 96px;
+    .dot {
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--black);
     }
 
-    .b3 {
-      width: 22px;
-      height: 22px;
-      left: 78px;
-      bottom: 40px;
+    .d1 { width: 44px; height: 44px; top: 48px; right: 44px; }
+    .d2 { width: 32px; height: 32px; right: 22px; top: 142px; }
+    .d3 { width: 20px; height: 20px; left: 58px; bottom: 52px; }
+    .d4 { width: 24px; height: 24px; left: 82px; top: 60px; }
+
+    .star {
+      width: 18px;
+      height: 18px;
+      background: var(--black);
+      clip-path: polygon(50% 0%, 61% 36%, 100% 50%, 61% 64%, 50% 100%, 39% 64%, 0% 50%, 39% 36%);
+    }
+
+    .s1 { left: 90px; top: 120px; }
+    .s2 { right: 90px; bottom: 80px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 8px 0 42px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat {
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 120px;
+    }
+
+    .stat.dark {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+
+    .stat span {
+      font-size: 14px;
+      color: inherit;
+    }
+
+    .section {
+      margin-bottom: 42px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .section-title {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 24px;
+      display: inline-block;
+      background: var(--green);
+      color: var(--black);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
     }
 
-    .highlight {
-      background: #b8ff2c;
-      padding: 2px 8px;
-      border-radius: 5px;
-      font-weight: 800;
-      font-size: 26px;
-    }
-
-    .section-title p {
-      color: #555;
+    .section-sub {
+      color: var(--muted);
       font-size: 14px;
     }
 
-.info-box {
-  background: #eeeeea;
-  border-radius: 28px;
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 40px;
-  align-items: center;
-  margin-bottom: 80px;
-}
-
-    .info-box h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-
-    .info-box p {
-      color: #444;
-      margin-bottom: 20px;
-    }
-
-    .profile {
-      background: #111;
-      color: #fff;
-      border-radius: 22px;
-      padding: 28px;
-    }
-
-    .profile p {
-      margin-bottom: 12px;
-    }
-
-    .cards {
+    .split {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 56px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
     }
 
-    .card {
-      min-height: 160px;
-      border: 2px solid #111;
-      border-radius: 22px;
-      padding: 24px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .box {
+      background: var(--soft);
+      border-radius: 28px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card.dark {
-      background: #111;
+    .box.dark {
+      background: var(--black);
       color: #fff;
     }
 
-    .card h3 {
+    .box.white {
+      background: #fff;
+      border: 2px solid var(--black);
+    }
+
+    .box h3 {
       font-size: 22px;
+      margin-bottom: 12px;
       line-height: 1.2;
     }
 
-    .tag {
-      display: inline;
-      background: #b8ff2c;
-      color: #111;
-      padding: 2px 6px;
-      border-radius: 4px;
+    .box p {
+      font-size: 15px;
+      color: inherit;
+      opacity: 0.95;
     }
 
-    .learn {
+    .mini-list {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-item {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    .box.white .mini-item,
+    .box .mini-item.light {
+      background: #fff;
+      border: 1.5px solid #ddd;
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .mosaic-right {
+      display: grid;
+      gap: 18px;
+    }
+
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .keyword {
+      border: 2px solid var(--black);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .cards-varied {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: 28px;
+      padding: 24px;
+      min-height: 190px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card.white {
+      background: #fff;
+      border: 2px solid var(--black);
+      color: var(--black);
+    }
+
+    .card.dark {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+
+    .card h4 {
+      font-size: 24px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--black);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 15px;
+      margin-bottom: 14px;
+      opacity: 0.95;
+    }
+
+    .card small {
       font-size: 14px;
       font-weight: 700;
     }
 
-    .contact {
-      background: #111;
-      color: #fff;
-      border-radius: 22px;
-      padding: 28px;
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      right: -15px;
+      bottom: -15px;
     }
 
-    .contact p {
+    .card.white::after {
+      border-color: rgba(0,0,0,0.12);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: #fff;
+      border: 2px solid var(--black);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .time {
+      font-weight: 900;
+      font-size: 16px;
+      color: var(--black);
+      background: var(--green);
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .timeline-item h4 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .contact-box {
+      background: var(--black);
+      color: #fff;
+      border-radius: 28px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      right: -20px;
+      bottom: -20px;
+    }
+
+    .contact-box p {
       margin-bottom: 12px;
+      font-size: 15px;
     }
 
     .footer {
+      margin-top: 18px;
+      border-top: 1px solid #d9d9d2;
+      padding-top: 22px;
       text-align: center;
-      color: #555;
+      color: var(--muted);
       font-size: 14px;
-      padding-top: 24px;
-      border-top: 1px solid #ddd;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 980px) {
+      .hero,
+      .split,
+      .mosaic,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-left h1 {
+        font-size: 52px;
+      }
+
+      .cards-varied {
+        grid-template-columns: 1fr;
+      }
+
+      .span-7, .span-5, .span-6, .span-4, .span-8 {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 14px;
+      }
+
       .page {
-        padding: 24px;
-        border-radius: 20px;
+        padding: 20px;
+        border-radius: 22px;
       }
 
       .nav {
         flex-direction: column;
-        gap: 16px;
         align-items: flex-start;
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
+      .hero-left h1 {
+        font-size: 42px;
       }
 
-      .hero,
-      .info-box {
+      .hero-left p {
+        font-size: 16px;
+      }
+
+      .stats {
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .cards {
+      .timeline-item {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
-
 <body>
   <main class="page">
     <nav class="nav">
-      <div class="logo">✦ 易妙 Yi Miao</div>
+      <div class="logo">✦ 易妙<span>Yi Miao</span></div>
       <div class="nav-links">
-       <a href="#about">关于我</a>
-<a href="#major">我的专业</a>
-<a href="#research">研究方向</a>
-<a href="#skills">专业能力</a>
-<a href="#hobby">兴趣</a>
-<a class="btn-outline" href="#contact">联系我</a>
-        
+        <a href="#about">关于我</a>
+        <a href="#education">教育背景</a>
+        <a href="#research">研究方向</a>
+        <a href="#skills">专业能力</a>
+        <a href="#interest">兴趣探索</a>
+        <a href="#contact" class="btn-outline">联系我</a>
       </div>
     </nav>
 
     <section class="hero">
-      <div>
+      <div class="hero-left">
         <h1>你好，<br>我是易妙</h1>
         <p>
-          我是一名工业设计工程专业的学生。这个网页是我使用 GitHub Pages 创建的个人主页，
-          用来展示我的个人信息、专业方向和兴趣爱好。
+          我目前是 <strong>广东工业大学工业设计专业研究生</strong>。
+          我关注产品设计、用户体验、设计创新与智能设计工具在设计流程中的应用，
+          希望通过研究与实践，把设计思维、技术方法和真实用户需求结合起来。
         </p>
-        <a class="btn-dark" href="#about">了解我</a>
+        <div class="hero-btns">
+          <a href="#about" class="btn-dark">了解我</a>
+          <a href="#research" class="btn-light">查看研究方向</a>
+        </div>
+        <div class="quick-tags">
+          <div class="chip">广东工业大学</div>
+          <div class="chip">工业设计研究生</div>
+          <div class="chip">产品设计</div>
+          <div class="chip">用户体验</div>
+          <div class="chip">AI Design</div>
+        </div>
       </div>
 
       <div class="hero-art">
-        <div class="circle"></div>
-        <div class="circle two"></div>
-        <div class="megaphone"></div>
-        <div class="bubble b1"></div>
-        <div class="bubble b2"></div>
-        <div class="bubble b3"></div>
+        <div class="orbit one"></div>
+        <div class="orbit two"></div>
+        <div class="orbit three"></div>
+        <div class="shape-main"></div>
+        <div class="dot d1"></div>
+        <div class="dot d2"></div>
+        <div class="dot d3"></div>
+        <div class="dot d4"></div>
+        <div class="star s1"></div>
+        <div class="star s2"></div>
       </div>
     </section>
 
-    <section id="about">
-      <div class="section-title">
-        <h2 class="highlight">关于我</h2>
-        <p>个人信息与学习方向</p>
+    <section class="stats">
+      <div class="stat">
+        <strong>01</strong>
+        <span>研究身份：广东工业大学工业设计研究生</span>
       </div>
-
-      <div class="info-box">
-        <div>
-          <h2>易妙</h2>
-         <p>
-  大家好，我叫易妙，目前是广东工业大学工业设计方向的研究生。
-  我的学习与研究主要围绕产品设计、用户体验、智能设计工具以及设计创新方法展开。
-  我希望通过系统的研究生学习，把设计思维、工程技术、人工智能工具与真实用户需求结合起来，
-  提升自己从问题发现、用户研究、概念构思到方案表达和原型验证的综合能力。
-</p>
-          <a class="btn-dark" href="#major">查看专业方向</a>
-        </div>
-
-        <div class="profile">
-  <p><strong>学校：</strong>广东工业大学</p>
-  <p><strong>身份：</strong>研究生</p>
-  <p><strong>专业：</strong>工业设计</p>
-  <p><strong>方向：</strong>产品设计 / 用户体验 / 智能设计</p>
-</div>
+      <div class="stat dark">
+        <strong>04</strong>
+        <span>核心关注：产品设计、用户体验、智能设计、设计创新</span>
+      </div>
+      <div class="stat">
+        <strong>AI</strong>
+        <span>持续探索人工智能工具在设计调研与表达中的应用</span>
+      </div>
+      <div class="stat dark">
+        <strong>UX</strong>
+        <span>关注用户真实需求与设计价值之间的连接</span>
       </div>
     </section>
 
-    <section id="major">
-      <div class="section-title">
-        <h2 class="highlight">专业方向</h2>
-        <p>工业设计工程</p>
+    <section class="section" id="about">
+      <div class="section-head">
+        <h2 class="section-title">关于我</h2>
+        <p class="section-sub">About me</p>
       </div>
 
-      <div class="info-box">
-        <div>
-       <h2>Industrial Design · 工业设计</h2>
-<p>
-  我目前就读于广东工业大学，研究方向与工业设计、产品创新、用户体验和智能设计相关。
-  工业设计不仅关注产品外观，也关注产品的使用方式、功能结构、用户需求、交互体验以及设计背后的社会价值。
-</p>
-<p>
-  在研究生阶段，我希望进一步学习设计研究方法、产品系统设计、服务设计、智能制造与人工智能辅助设计等内容，
-  让自己的设计方案更加具有逻辑性、实用性和创新性。
-</p>
-        </div>
-
-        <div class="profile">
-          <p><strong>关键词：</strong>产品设计</p>
-          <p><strong>关键词：</strong>用户体验</p>
-          <p><strong>关键词：</strong>创新实践</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="research">
-  <div class="section-title">
-    <h2 class="highlight">研究方向</h2>
-    <p>Research interests</p>
-  </div>
-
-      <section id="skills">
-  <div class="section-title">
-    <h2 class="highlight">专业能力</h2>
-    <p>Design skills</p>
-  </div>
-
-  <div class="info-box">
-    <div>
-      <h2>从设计想法到方案表达</h2>
-      <p>
-        在工业设计学习过程中，我正在不断提升自己的设计表达能力、软件应用能力和项目实践能力。
-        我希望能够把调研分析、设计创意、视觉表达和技术工具结合起来，形成完整的设计方案。
-      </p>
-    </div>
-
-    <div class="profile">
-      <p><strong>设计调研：</strong>用户访谈、需求分析</p>
-      <p><strong>视觉表达：</strong>版式、草图、设计展示</p>
-      <p><strong>数字工具：</strong>AI 工具、网页制作</p>
-      <p><strong>综合能力：</strong>沟通、写作、项目整理</p>
-    </div>
-  </div>
-</section>
-      
-  <div class="cards">
-    <div class="card">
-      <h3><span class="tag">产品设计</span></h3>
-      <p>
-        关注产品的功能、结构、造型与用户需求之间的关系，
-        希望通过设计提升产品的实用性和体验感。
-      </p>
-      <div class="learn">Product Design →</div>
-    </div>
-
-    <div class="card dark">
-      <h3><span class="tag">用户体验</span></h3>
-      <p>
-        关注用户在使用产品过程中的感受、行为和需求，
-        学习通过调研、访谈和体验分析优化设计方案。
-      </p>
-      <div class="learn">User Experience →</div>
-    </div>
-
-    <div class="card dark">
-      <h3><span class="tag">智能设计</span></h3>
-      <p>
-        尝试将人工智能工具应用到设计调研、灵感生成、图像表达、
-        文案整理和方案优化等设计流程中。
-      </p>
-      <div class="learn">AI Design →</div>
-    </div>
-
-    <div class="card">
-      <h3><span class="tag">设计创新</span></h3>
-      <p>
-        关注设计如何回应真实问题，希望通过跨学科的方法探索更有价值的设计解决方案。
-      </p>
-      <div class="learn">Innovation →</div>
-    </div>
-  </div>
-</section>
-    
-    <section id="hobby">
-      <div class="section-title">
-        <h2 class="highlight">我的兴趣</h2>
-        <p>我喜欢探索创意、技术和表达方式。</p>
-      </div>
-
-      <div class="cards">
-        <div class="card">
-          <h3><span class="tag">绘画设计</span></h3>
-          <p>喜欢用视觉方式表达想法，提升审美和设计表现能力。</p>
-          <div class="learn">Design →</div>
-        </div>
-
-        <div class="card dark">
-          <h3><span class="tag">人工智能</span></h3>
-          <p>学习 AI 工具，尝试把人工智能用于学习、设计和创作。</p>
-          <div class="learn">AI Tools →</div>
-        </div>
-
-        <div class="card dark">
-          <h3><span class="tag">阅读写作</span></h3>
-          <p>通过阅读和写作整理自己的思考，积累表达能力。</p>
-          <div class="learn">Writing →</div>
-        </div>
-
-        <div class="card">
-          <h3><span class="tag">网页制作</span></h3>
-          <p>尝试使用 HTML 和 CSS 制作网页，记录自己的学习过程。</p>
-          <div class="learn">Web →</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-title">
-        <h2 class="highlight">联系我</h2>
-        <p>Contact information</p>
-      </div>
-
-      <div class="info-box">
-        <div>
-          <h2>欢迎来到我的个人网页</h2>
+      <div class="split">
+        <div class="box">
+          <h3>设计学习与研究的起点</h3>
           <p>
-            这是我对个人主页的一次视觉改版尝试，整体参考了黑白极简、绿色强调和圆角卡片的设计风格。
+            大家好，我叫易妙，目前就读于广东工业大学，是一名工业设计专业研究生。
+            在学习过程中，我逐渐形成了自己对设计的理解：设计不仅是视觉表达，
+            更是对问题、用户、情境与价值的综合回应。
+          </p>
+          <p style="margin-top: 14px;">
+            我希望在研究生阶段不断提升自己的设计研究能力、设计表达能力、
+            方案整合能力与跨学科思考能力，并尝试把人工智能工具融入设计调研、
+            概念生成、图文表达与方案优化中。
           </p>
         </div>
 
-        <div class="contact">
-          <p><strong>电话：</strong>18926592856</p>
+        <div class="box dark">
+          <h3>个人信息</h3>
+          <div class="mini-list">
+            <div class="mini-item">姓名：易妙</div>
+            <div class="mini-item">学校：广东工业大学</div>
+            <div class="mini-item">身份：工业设计专业研究生</div>
+            <div class="mini-item">关键词：设计思维 / 创新 / 用户体验 / 智能设计</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-head">
+        <h2 class="section-title">教育背景</h2>
+        <p class="section-sub">Education timeline</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">现在</div>
+          <div>
+            <h4>广东工业大学 · 工业设计研究生</h4>
+            <p>
+              聚焦工业设计、产品创新、用户体验与设计研究方法，
+              并持续探索智能工具在设计流程中的辅助作用。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time">学习中</div>
+          <div>
+            <h4>研究生阶段重点提升</h4>
+            <p>
+              设计研究方法、产品系统思维、设计表达、设计创新、
+              视觉呈现与跨学科整合能力。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="research">
+      <div class="section-head">
+        <h2 class="section-title">研究方向</h2>
+        <p class="section-sub">Research interests</p>
+      </div>
+
+      <div class="cards-varied">
+        <div class="card white span-7">
+          <div class="tag">产品设计</div>
+          <h4>从功能、结构到使用体验的整体思考</h4>
+          <p>
+            关注产品的功能逻辑、结构组织、造型语言与用户需求之间的关系，
+            希望通过设计提升产品的实用性、可用性与体验感。
+          </p>
+          <small>Product Design →</small>
+        </div>
+
+        <div class="card dark span-5">
+          <div class="tag">用户体验</div>
+          <h4>理解用户，优化设计决策</h4>
+          <p>
+            关注用户在使用产品过程中的感受、行为与需求，
+            学习通过调研、访谈、体验分析等方法优化设计方案。
+          </p>
+          <small>User Experience →</small>
+        </div>
+
+        <div class="card dark span-5">
+          <div class="tag">智能设计</div>
+          <h4>AI 工具与设计流程结合</h4>
+          <p>
+            尝试将人工智能工具应用到设计调研、灵感生成、图像表达、
+            文本整理与方案优化等设计环节，提升效率与表达质量。
+          </p>
+          <small>AI Design →</small>
+        </div>
+
+        <div class="card white span-7">
+          <div class="tag">设计创新</div>
+          <h4>面向真实问题的设计思考</h4>
+          <p>
+            关注设计如何回应现实问题，希望通过跨学科的方法探索更有价值、
+            更具社会意义的设计解决方案。
+          </p>
+          <small>Design Innovation →</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head">
+        <h2 class="section-title">专业能力</h2>
+        <p class="section-sub">Skills & methods</p>
+      </div>
+
+      <div class="mosaic">
+        <div class="box white">
+          <h3>从问题发现到方案表达</h3>
+          <p>
+            我正在逐步形成较完整的设计工作路径：从问题发现、资料收集、
+            用户理解，到概念生成、设计表达与方案整理，希望让每一个设计方案
+            都更有逻辑、更有价值，也更符合真实使用情境。
+          </p>
+
+          <div class="keywords">
+            <div class="keyword">用户调研</div>
+            <div class="keyword">设计分析</div>
+            <div class="keyword">视觉表达</div>
+            <div class="keyword">方案整理</div>
+            <div class="keyword">AI 辅助设计</div>
+            <div class="keyword">网页表达</div>
+          </div>
+        </div>
+
+        <div class="mosaic-right">
+          <div class="box dark">
+            <h3>能力关键词</h3>
+            <div class="mini-list">
+              <div class="mini-item">产品思维</div>
+              <div class="mini-item">用户体验意识</div>
+              <div class="mini-item">研究与分析能力</div>
+              <div class="mini-item">设计表达与展示</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h3>学习目标</h3>
+            <p>
+              希望在研究生阶段持续积累项目经验，提升研究深度，
+              并形成具有个人特色的设计方法与表达风格。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interest">
+      <div class="section-head">
+        <h2 class="section-title">兴趣探索</h2>
+        <p class="section-sub">My interests</p>
+      </div>
+
+      <div class="cards-varied">
+        <div class="card white span-6">
+          <div class="tag">绘画设计</div>
+          <h4>用视觉方式表达想法</h4>
+          <p>
+            喜欢通过草图、图像和视觉布局表达设计思路，
+            也在不断提升自己的审美感受与版式表达能力。
+          </p>
+          <small>Visual Design →</small>
+        </div>
+
+        <div class="card dark span-6">
+          <div class="tag">人工智能</div>
+          <h4>关注 AI 对学习与设计的推动</h4>
+          <p>
+            学习并尝试使用 AI 工具辅助资料整理、灵感生成、
+            图像设计与网页内容构思，让工具真正服务于创造。
+          </p>
+          <small>AI Tools →</small>
+        </div>
+
+        <div class="card dark span-4">
+          <div class="tag">阅读写作</div>
+          <h4>整理思考，积累表达</h4>
+          <p>
+            通过阅读和写作积累知识，训练自己更清晰地表达观点与思考。
+          </p>
+          <small>Writing →</small>
+        </div>
+
+        <div class="card white span-8">
+          <div class="tag">网页制作</div>
+          <h4>把个人表达变成可视化页面</h4>
+          <p>
+            尝试使用 HTML 与 CSS 制作网页，希望把设计思路、个人信息和学习过程
+            以更完整、更有结构的方式呈现出来，这个页面也是我持续优化的练习之一。
+          </p>
+          <small>Web Design →</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-head">
+        <h2 class="section-title">联系我</h2>
+        <p class="section-sub">Contact information</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="box">
+          <h3>欢迎交流设计与学习</h3>
+          <p>
+            如果你也对工业设计、用户体验、设计研究或智能设计工具感兴趣，
+            欢迎与我交流。这个网页将继续作为我的学习记录与个人展示页面不断完善。
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <p><strong>姓名：</strong>易妙</p>
+          <p><strong>学校：</strong>广东工业大学</p>
+          <p><strong>专业：</strong>工业设计研究生</p>
           <p><strong>邮箱：</strong>2045059049@qq.com</p>
+          <p><strong>电话：</strong>18926592856</p>
         </div>
       </div>
     </section>
 
     <footer class="footer">
-      © 2026 易妙的个人网页 | Powered by GitHub Pages
+      © 2026 易妙的个人网页 ｜ Powered by GitHub Pages
     </footer>
   </main>
 </body>
